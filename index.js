@@ -95,8 +95,8 @@ DomHandler.prototype.onopentag = function(name, attribs){
 		children: []
 	};
 
-	if (this._options.attribTransforms && this._options.attribTransforms[name]) {
-		attribs = this._options.attribTransforms[name].apply(this, attribs);
+	if(this._options.attribTransforms && this._options.attribTransforms[name]) {
+		attribs = this._options.attribTransforms[name].call(this, attribs);
 	}
 
 	this._addDomElement(element);
