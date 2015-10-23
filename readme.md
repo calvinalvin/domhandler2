@@ -1,4 +1,4 @@
-#DOMHandler
+#DOMHandler2
 
 The DOM handler (formally known as DefaultHandler) creates a tree containing all nodes of a page. The tree may be manipulated using the DOMUtils library.
 
