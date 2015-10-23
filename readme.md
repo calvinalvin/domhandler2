@@ -109,9 +109,9 @@ The following HTML will be used:
 Indicates whether a `startIndex` property will be added to nodes. When the parser is used in a non-streaming fashion, `startIndex` is an integer indicating the position of the start of the node in the document. The default value is "false".
 
 ##Option: attribTransforms
-An object that allows you to transform and modify attributes for tags. The property keys for this object should map to valid html tags. Each property should map to a function that receives an `attribs` object. You can do whatever you
+An object that allows you to transform and modify attributes for html tags. The property keys for this object should map to valid html tags. Each property should map to a function that receives an `attribs` object. You can do whatever you
 want to the attribs, but once you're done, make sure you return them or they'll be null! The example below
-transforms relative urls paths of `img` tags into absolute paths.
+transforms relative urls paths of `img` and 'a' tags into absolute paths.
 
 ```javascript
 var htmlparser = require('htmlparser2');
