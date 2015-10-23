@@ -119,7 +119,7 @@ var DomHandler = require('domhandler2');
 var tohtml = require('htmlparser-to-html');
 var url = require('url');
 
-var html = '<img src="/NUlzFcY.gif">';
+var html = '<a href="/NUlzFcY.gif"><img src="/NUlzFcY.gif"></a>';
 var handler = function(domErr, dom) {
   if (domErr) {
     throw domErr;
@@ -136,6 +136,13 @@ var attribTransforms = {
     }
 
     // remember to return the attribs or they will be null!
+    return attribs;
+  },
+  'a': function(attribs) {
+    if (attribs.href) {
+      attribs.href = url.resolve('http://i.imgur.com', attribs.href);
+    }
+
     return attribs;
   }
 };
