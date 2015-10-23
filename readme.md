@@ -114,6 +114,7 @@ want to the attribs, but once you're done, make sure you return them or they'll 
 transforms relative urls paths of `img` tags into absolute paths.
 
 ```javascript
+var htmlparser = require('htmlparser2');
 var DomHandler = require('domhandler2');
 var url = require('url');
 
