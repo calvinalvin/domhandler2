@@ -116,6 +116,7 @@ transforms relative urls paths of `img` tags into absolute paths.
 ```javascript
 var htmlparser = require('htmlparser2');
 var DomHandler = require('domhandler2');
+var tohtml = require('htmlparser-to-html');
 var url = require('url');
 
 var handler = function(domErr, dom) {
