@@ -1,6 +1,10 @@
-#DOMHandler [![Build Status](https://secure.travis-ci.org/fb55/DomHandler.png)](http://travis-ci.org/fb55/DomHandler)
+#DOMHandler
 
 The DOM handler (formally known as DefaultHandler) creates a tree containing all nodes of a page. The tree may be manipulated using the DOMUtils library.
+
+###Why domhandler2?
+I needed an easy way to transform and modify the attributes of html tags. See `attribTransforms` option below. If you
+want the original, it's here [![original domhandler](https://github.com/fb55/domhandler)
 
 ##Usage
 ```javascript
@@ -47,7 +51,7 @@ Output:
 ```
 
 ##Option: normalizeWhitespace
-Indicates whether the whitespace in text nodes should be normalized (= all whitespace should be replaced with single spaces). The default value is "false". 
+Indicates whether the whitespace in text nodes should be normalized (= all whitespace should be replaced with single spaces). The default value is "false".
 
 The following HTML will be used:
 
@@ -103,3 +107,41 @@ The following HTML will be used:
 
 ##Option: withStartIndices
 Indicates whether a `startIndex` property will be added to nodes. When the parser is used in a non-streaming fashion, `startIndex` is an integer indicating the position of the start of the node in the document. The default value is "false".
+
+##Option: attribTransforms
+An object that allows you to transform and modify attributes for tags. The property keys for this object should map to valid html tags. Each property should map to a function that receives an `attribs` object. You can do whatever you
+want to the attribs, but once you're done, make sure you return them or they'll be null! The example below
+transforms relative urls paths of `img` tags into absolute paths.
+
+```javascript
+var DomHandler = require('domhandler2');
+var url = require('url');
+
+var handler = function(domErr, dom) {
+  if (domErr) {
+    throw domErr;
+  } else {
+    html = tohtml(dom);
+  }
+};
+
+var attribTransforms = {
+  'img': function(attribs) {
+    if (attribs.src) {
+      // this allows you to transform relative paths into absolute paths
+      attribs.src = url.resolve('http://mydomain.com/', attribs.src);
+    }
+
+    // remember to return the attribs or they will be null!
+    return attribs;
+  }
+};
+
+var domHandler = new DomHandler(handler, {attribTransforms: attribTransforms});
+
+var parser = new htmlparser.Parser(domHandler);
+parser.write(html);
+parser.done();
+return html;
+}
+```
