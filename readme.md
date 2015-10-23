@@ -4,7 +4,7 @@ The DOM handler (formally known as DefaultHandler) creates a tree containing all
 
 ###Why domhandler2?
 I needed an easy way to transform and modify the attributes of html tags. See `attribTransforms` option below. If you
-want the original, it's here [![original domhandler](https://github.com/fb55/domhandler)
+want the original, it's here [original domhandler](https://github.com/fb55/domhandler)
 
 ##Usage
 ```javascript
