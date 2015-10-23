@@ -119,6 +119,7 @@ var DomHandler = require('domhandler2');
 var tohtml = require('htmlparser-to-html');
 var url = require('url');
 
+var html = '<img src="/NUlzFcY.gif">';
 var handler = function(domErr, dom) {
   if (domErr) {
     throw domErr;
@@ -131,7 +132,7 @@ var attribTransforms = {
   'img': function(attribs) {
     if (attribs.src) {
       // this allows you to transform relative paths into absolute paths
-      attribs.src = url.resolve('http://mydomain.com/', attribs.src);
+      attribs.src = url.resolve('http://i.imgur.com', attribs.src);
     }
 
     // remember to return the attribs or they will be null!
@@ -144,6 +145,5 @@ var domHandler = new DomHandler(handler, {attribTransforms: attribTransforms});
 var parser = new htmlparser.Parser(domHandler);
 parser.write(html);
 parser.done();
-return html;
-}
+console.log(html);
 ```
